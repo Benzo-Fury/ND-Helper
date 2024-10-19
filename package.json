@@ -1,0 +1,29 @@
+{
+  "name": "jerry-beggins",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "newcmd": "bun scripts/newCommand.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@sern/handler": "^4.0.3",
+    "@sern/publisher": "^1.1.2",
+    "discord.js": "^14.16.3",
+    "mongoose": "^8.7.0",
+    "words-to-numbers": "^1.5.1"
+  },
+  "paths": {
+    "#config": [
+      "./src/config.ts"
+    ],
+    "#jembed": [
+      "./src/classes/Embed.ts"
+    ]
+  }
+}
