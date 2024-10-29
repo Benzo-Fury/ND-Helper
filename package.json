@@ -3,7 +3,10 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "newcmd": "bun scripts/newCommand.ts"
+    "newcmd": "bun scripts/newCommand.ts",
+    "construct": "bun build --no-bundle --entrypoints ./src/index.ts --outdir ./dist --target bun",
+    "prod": "NODE_ENV=production pm2 start ./scripts/pm2/js.config.js",
+    "prod-ts": "NODE_ENV=production pm2 start ./scripts/pm2/ts.config.js"
   },
   "devDependencies": {
     "@types/bun": "^1.1.12"
