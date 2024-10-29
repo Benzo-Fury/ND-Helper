@@ -101,8 +101,10 @@ web_modules/
 # dotenv environment variable files
 
 .env
+.env.development
 .env.development.local
 .env.test.local
+.env.production
 .env.production.local
 .env.local
 
@@ -173,6 +175,9 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
+
+# Bun
+bun.lockb
 
 # sern handler
 .sern
