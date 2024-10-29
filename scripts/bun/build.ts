@@ -4,4 +4,5 @@ await Bun.build({
     outdir: "./dist",
     target: "bun",
     format: "esm",
+    
 })
