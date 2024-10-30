@@ -2,6 +2,7 @@ import { commandModule, CommandType } from "@sern/handler";
 import { ApplicationCommandOptionType } from "discord.js";
 import { UserModel } from "../../../../schemas/user.schema";
 import timezones from "../../../../../public/autocomplete/timezones.json";
+import { DateTime } from "luxon";
 
 export default commandModule({
   type: CommandType.Slash,
@@ -86,11 +87,11 @@ export default commandModule({
           });
         }
 
-        // Extracting data
-        const data = extractTimezoneData(userDoc.timezone);
+        // Calculating local time
+        const localTime = calculateTime(userDoc.timezone);
 
-        await ctx.reply({
-          content: `Current time for ${user} is ${data.current_timestamp}, in timezone: \`${data.timezone}\`.`,
+        const currentTime = await ctx.reply({
+          content: `Current time for ${user} is <t:${localTime}>, in timezone: \`${userDoc.timezone}\`.`,
           allowedMentions: { parse: [] },
         });
         break;
@@ -127,53 +128,26 @@ function fuzzyMatchTimezone(text: string, locale = false) {
   return zones.slice(0, 25).map((z) => ({ name: z, value: z }));
 }
 
-function extractTimezoneData(timezone: string): {
-  current_timestamp: string;
-  timezone: string;
-} {
+/**
+ * Takes a IANA formatted timezone and converts it to
+ * a unix timestamp.
+ */
+function calculateTime(timezone: string) {
   // Check if correct timezone
   if (!timezones.includes(timezone)) {
     throw new Error("Invalid timezone");
   }
 
-  // Regular expression to match Etc/GMT timezones with an offset
-  const etcPattern = /^Etc\/GMT([+-]\d+)$/i;
+  /**
+   * Using Luxon to calculate times as at the time of writing this,
+   * there is an issue with Bun on linux that stops us from calculating time accurately
+   */
 
-  // Attempt to match the timezone against the regular expression
-  const match = timezone.match(etcPattern);
+  // Get the current time in the specified timezone
+  const now = DateTime.now().setZone(timezone);
 
-  // Initialize the adjustedTimezone with the original timezone from the document
-  let adjustedTimezone = timezone;
+  // Convert to UTC and return the Unix timestamp
+  const timestamp = Math.floor(now.toUTC().toSeconds());
 
-  // If the timezone matches the Etc/GMT pattern, adjust the offset sign
-  if (match) {
-    const offset = parseInt(match[1], 10);
-    adjustedTimezone = `Etc/GMT${offset > 0 ? "-" : "+"}${Math.abs(offset)}`;
-  }
-
-  // Create a string representation of the current date and time in the adjusted timezone
-  const currentDate = new Date().toLocaleString("en-US", {
-    timeZone: adjustedTimezone,
-  });
-
-  // Convert the current date and time to a Unix timestamp using the adjusted timezone
-  const timestamp = Math.floor(new Date(currentDate).getTime() / 1000);
-
-  // Get the full date and timezone string using the Intl.DateTimeFormat constructor
-  const fullDateTimeZone = new Intl.DateTimeFormat("en-US", {
-    timeZone: adjustedTimezone,
-    timeZoneName: "long",
-  }).format(new Date());
-
-  // Use a regular expression to extract just the timezone name from the full string
-  const timezoneNameMatch = fullDateTimeZone.match(/, (.*)$/);
-  const timezoneName = timezoneNameMatch
-    ? timezoneNameMatch[1]
-    : "Unknown Timezone";
-
-  // Return an object with the timestamp in Discord's Unix timestamp format and the human-readable timezone name
-  return {
-    current_timestamp: `<t:${timestamp}>`,
-    timezone: timezoneName,
-  };
+  return timestamp;
 }
