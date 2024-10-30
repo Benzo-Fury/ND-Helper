@@ -4,8 +4,8 @@ ND Helper is the official bot for the [Neo Develops Discord server](https://disc
 # Primary Commands
 - `/ping`
 - Time: 
-  - `/time set`
-  - `/time get`
+  - `/time set {time}`
+  - `/time get {user?}`
   - `/time delete`
 - `/silent-ping {user}`
 
