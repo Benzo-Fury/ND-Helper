@@ -1,11 +1,11 @@
 import { commandModule, CommandType } from "@sern/handler";
 import { ApplicationCommandOptionType, ChannelType, GuildMember, type ColorResolvable, type GuildTextBasedChannel, type PermissionResolvable } from "discord.js";
-import { ConfigModel } from "../../../schemas/config.model";
-import { guildOnly } from "../../../plugins/guildOnly";
-import { permRequire } from "../../../plugins/permRequire";
+import { ConfigModel } from "../../../../schemas/config.model";
+import { guildOnly } from "../../../../plugins/guildOnly";
+import { permRequire } from "../../../../plugins/permRequire";
 import { JEmbed } from "#jembed";
 import gConfig from "#config"
-import { PodModel } from "../../../schemas/pod.model";
+import { PodModel } from "../../../../schemas/pod.model";
 
 export default commandModule({
   type: CommandType.Slash,
