@@ -5,6 +5,7 @@
   "scripts": {
     "newcmd": "bun scripts/newCommand.ts",
     "construct": "bun build --no-bundle --entrypoints ./src/index.ts --outdir ./dist --target bun",
+    "dev": "bun run ./src/index.ts --watch",
     "prod": "NODE_ENV=production pm2 start ./scripts/pm2/js.config.js",
     "prod-ts": "NODE_ENV=production pm2 start ./scripts/pm2/ts.config.js"
   },
@@ -18,6 +19,7 @@
     "@sern/handler": "^4.0.3",
     "@sern/publisher": "^1.1.2",
     "discord.js": "^14.16.3",
+    "luxon": "^3.5.0",
     "mongoose": "^8.7.0",
     "words-to-numbers": "^1.5.1"
   },
