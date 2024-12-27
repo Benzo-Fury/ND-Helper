@@ -1,5 +1,5 @@
 module.exports = {
-  name: "unionize",
+  name: "nd-helper",
   script: "dist/index.js",
   interpreter: "bun",
   env: {
