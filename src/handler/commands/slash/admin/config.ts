@@ -9,7 +9,7 @@ import {
   Message,
 } from "discord.js";
 import { ConfigModel } from "../../../../schemas/config.model";
-import { awaitMessageComponent } from "../../../../functions/awaitMessageComponent";
+import { awaitMessageComponent } from "../../../../utils/functions/awaitMessageComponent";
 import { guildOnly } from "../../../../plugins/guildOnly";
 import { permRequire } from "../../../../plugins/permRequire";
 

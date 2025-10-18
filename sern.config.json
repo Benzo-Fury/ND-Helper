@@ -1,0 +1,8 @@
+{
+  "language": "typescript",
+  "paths": {
+    "base": "src",
+    "commands": "handler/commands",
+    "events": "handler/events"
+  }
+}

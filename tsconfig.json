@@ -27,7 +27,7 @@
     // Paths
     "paths": {
       "#config": ["./src/config.ts"],
-      "#jembed": ["./src/classes/JEmbed.ts"]
+      "#jembed": ["./src/utils/classes/JEmbed.ts"]
     }
-  },
+  }
 }

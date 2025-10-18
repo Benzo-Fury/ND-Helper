@@ -7,10 +7,10 @@ import {
   Message,
   type GuildTextBasedChannel,
 } from "discord.js";
-import { isValidDiscordMessageLink } from "../../../../functions/isValidDiscordMessageLink";
-import { fetchMessageFromUrl } from "../../../../functions/fetchMessageFromUrl";
-import { JEmbed } from "#jembed";
-import { attachmentIsImage } from "../../../../functions/attachmentIsImage";
+import { isValidDiscordMessageLink } from "../../../../utils/functions/isValidDiscordMessageLink";
+import { fetchMessageFromUrl } from "../../../../utils/functions/fetchMessageFromUrl";
+import { JEmbed } from "../../../../utils/classes/JEmbed";
+import { attachmentIsImage } from "../../../../utils/functions/attachmentIsImage";
 
 export default commandModule({
   type: CommandType.Slash,

@@ -1,11 +1,17 @@
 import { commandModule, CommandType } from "@sern/handler";
-import { ApplicationCommandOptionType, ChannelType, GuildMember, type ColorResolvable, type GuildTextBasedChannel, type PermissionResolvable } from "discord.js";
-import { ConfigModel } from "../../../../schemas/config.model";
+import {
+  ApplicationCommandOptionType,
+  ChannelType,
+  GuildMember,
+  type GuildTextBasedChannel,
+  type PermissionResolvable,
+} from "discord.js";
+import { ConfigModel } from "../../../../utils/schemas/config.model";
 import { guildOnly } from "../../../../plugins/guildOnly";
 import { permRequire } from "../../../../plugins/permRequire";
-import { JEmbed } from "#jembed";
-import gConfig from "#config"
-import { PodModel } from "../../../../schemas/pod.model";
+import { JEmbed } from "../../../../utils/classes/JEmbed";
+import gConfig from "#config";
+import { PodModel } from "../../../../utils/schemas/pod.model";
 
 export default commandModule({
   type: CommandType.Slash,
@@ -50,10 +56,10 @@ export default commandModule({
             {
               name: "Stage",
               value: "stage",
-            }
+            },
           ],
-          required: true
-        }
+          required: true,
+        },
       ],
     },
     {
@@ -70,10 +76,10 @@ export default commandModule({
           name: "user",
           description: "The user to add 👤",
           type: ApplicationCommandOptionType.User,
-          required: true
-        }
-      ]
-    }
+          required: true,
+        },
+      ],
+    },
   ],
   execute: async (ctx, sdt) => {
     switch (ctx.options.getSubcommand()) {
@@ -103,7 +109,12 @@ export default commandModule({
         }
 
         // Fetching category & creating channel
-        const modifiedPerms: PermissionResolvable[] = ["SendMessages", "AddReactions", "CreatePublicThreads", "CreatePrivateThreads"]
+        const modifiedPerms: PermissionResolvable[] = [
+          "SendMessages",
+          "AddReactions",
+          "CreatePublicThreads",
+          "CreatePrivateThreads",
+        ];
         const pod = await ctx.guild!.channels.create({
           name: `📦pod-${system}`,
           type: ChannelType.GuildText,
@@ -129,42 +140,43 @@ export default commandModule({
           channelId: pod.id,
           authorId: ctx.user.id,
           botId: bot.id,
-        })
+        });
 
         // Editing original message and posting new one in pod.
         await ctx.interaction.editReply({
           content: null,
           embeds: [
             new JEmbed({
-              author: ctx.member as GuildMember
+              author: ctx.member as GuildMember,
             })
               .setColor(gConfig.podEmbedColor)
               .setTitle("New Pod 📦")
-              .setDescription(`${ctx.user} has spun up a new pod to test \`${system}\` inside ${bot} 🧪.\nThe pod can be found here\n ## <#${pod.id}>.`)
-              .setThumbnail(gConfig.packageEmojiNameUrl)
-          ]
-        })
+              .setDescription(
+                `${ctx.user} has spun up a new pod to test \`${system}\` inside ${bot} 🧪.\nThe pod can be found here\n ## <#${pod.id}>.`
+              )
+              .setThumbnail(gConfig.packageEmojiNameUrl),
+          ],
+        });
 
         break;
       }
 
       case "archive": {
-        const podDoc = await PodModel.findOne({channelId: ctx.channel!.id});
+        const podDoc = await PodModel.findOne({ channelId: ctx.channel!.id });
 
         if (!podDoc) {
           return ctx.reply({
             content: "This channel does not seem to be a pod 📦.",
-            ephemeral: true
-          })
+            ephemeral: true,
+          });
         }
 
         podDoc.solved = true;
         podDoc.save();
 
         await (ctx.channel! as GuildTextBasedChannel).edit({
-          permissionOverwrites: [
-          ]
-        })
+          permissionOverwrites: [],
+        });
 
         // Lock perms
         // Move channel to archive category

@@ -1,7 +1,4 @@
-import {
-  commandModule,
-  CommandType,
-} from "@sern/handler";
+import { commandModule, CommandType } from "@sern/handler";
 import {
   ActionRowBuilder,
   ApplicationCommandOptionType,
@@ -13,11 +10,11 @@ import {
   type GuildTextBasedChannel,
 } from "discord.js";
 import { permRequire } from "../../../../plugins/permRequire";
-import { EmbedPresetModel } from "../../../../schemas/embedPreset.model";
-import { stringToBoolean } from "../../../../functions/strToBoolean";
+import { EmbedPresetModel } from "../../../../utils/schemas/embedPreset.model";
+import { stringToBoolean } from "../../../../utils/functions/strToBoolean";
 import config from "#config";
-import { hexToInt } from "../../../../functions/hexToInt";
-import { isHexColor } from "../../../../functions/isHexColor";
+import { hexToInt } from "../../../../utils/functions/hexToInt";
+import { isHexColor } from "../../../../utils/functions/isHexColor";
 
 export interface ButtonObj {
   customId: string;
@@ -199,7 +196,7 @@ export default commandModule({
               new ButtonBuilder()
                 .setCustomId(b.customId)
                 .setLabel(b.label)
-                .setStyle(styleMap[b.style])
+                .setStyle(styleMap[b.style as ButtonObj["style"]])
                 .setDisabled(b.disabled ? stringToBoolean(b.disabled) : false)
             )
           );

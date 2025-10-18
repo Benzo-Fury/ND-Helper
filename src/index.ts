@@ -1,7 +1,7 @@
-import { Bot, defaultBotOptions } from "./classes/Bot.ts";
+import { Bot, defaultBotOptions } from "./utils/classes/Bot.ts";
 import { makeDependencies, Sern } from "@sern/handler";
 import { Publisher } from "@sern/publisher";
-import { MongoClient } from "./classes/MongoClient.ts";
+import { MongoClient } from "./utils/classes/MongoClient.ts";
 import config from "./config.ts";
 
 // Creating client instance

@@ -16,7 +16,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@sern/handler": "^4.0.3",
+    "@sern/handler": "^4.2.6",
     "@sern/publisher": "^1.1.2",
     "discord.js": "^14.16.3",
     "luxon": "^3.5.0",

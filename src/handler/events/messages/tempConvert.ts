@@ -1,5 +1,5 @@
 import { eventModule, EventType } from "@sern/handler";
-import { numberPresent } from "../../../functions/numberPresent";
+import { numberPresent } from "../../../utils/functions/numberPresent";
 import wordsToNumbers from "words-to-numbers";
 
 type PrimaryMeasurement = "celsius" | "fahrenheit";
