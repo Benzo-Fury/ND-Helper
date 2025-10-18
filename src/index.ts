@@ -29,4 +29,4 @@ Sern.init({
 });
 
 // Logging in with discord
-client.login(process.env.CLIENT_TOKEN);
+client.login(process.env.DISCORD_TOKEN);
