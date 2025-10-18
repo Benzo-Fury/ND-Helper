@@ -5,7 +5,7 @@ declare global {
         interface ProcessEnv {
             DISCORD_TOKEN: string;
             DB_URI: string;
-            WHITELIST_FILE: string;
+            MC_RCON_PASSWORD: string;
         }
     }
 }
