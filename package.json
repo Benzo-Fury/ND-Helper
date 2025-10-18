@@ -3,7 +3,7 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "build": "bun run ./scripts/ts/builld.ts",
+    "build": "bun build --no-bundle --entrypoints ./src/index.ts --outdir ./dist --target bun --minify",
     "dev": "bun run ./src/index.ts --watch",
     "prod": "NODE_ENV=production pm2 start ./scripts/pm2/js.config.js",
     "prod-ts": "NODE_ENV=production pm2 start ./scripts/pm2/ts.config.js"
