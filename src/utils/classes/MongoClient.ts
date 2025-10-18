@@ -18,7 +18,7 @@ export class MongoClient implements Disposable {
   }
 
   async connect() {
-    await mongoose.connect(this.uri);
+    await mongoose.connect(this.uri, {dbName: "nd"});
   }
   async disconnect() {
     await mongoose.disconnect();

@@ -19,7 +19,7 @@ export interface WhitelistRecord {
 export default commandModule({
   type: CommandType.Slash,
   description: "Check latency 🏓",
-  plugins: [roleOnly(config.roles.mcAdmin)],
+  plugins: [roleOnly([config.roles.mcAdmin, config.roles.mcAdmin2])],
   options: [
     {
       name: "add",

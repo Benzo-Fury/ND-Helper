@@ -17,7 +17,7 @@ export function roleOnly(role: string | string[]) {
       await ctx.reply({
         content:
           "You're missing the required role(s) to operate this command 🧩.",
-        ephemeral: true,
+        flags: "Ephemeral",
       });
       return controller.stop();
     }
@@ -25,5 +25,3 @@ export function roleOnly(role: string | string[]) {
     return controller.next();
   });
 }
-
-
