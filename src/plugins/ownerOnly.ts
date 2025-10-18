@@ -20,7 +20,9 @@
  */
 
 import { CommandType, CommandControlPlugin, controller } from "@sern/handler";
-const ownerIDs = ["671610612475756576"]; //! Fill your ID
+import config from "../config";
+
+const ownerIDs = config.owner; //! Fill your ID
 export function ownerOnly(override?: string[]) {
   return CommandControlPlugin<CommandType.Both>((ctx) => {
     if ((override ?? ownerIDs).includes(ctx.user.id)) return controller.next();

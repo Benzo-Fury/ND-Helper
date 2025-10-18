@@ -19,6 +19,10 @@ const config = {
 
   // Command Ids (MODIFY ALL DISCORD IDS SO THEY UPDATE UPON CLIENT READY)
   presets: "1294083619912028272",
+
+  roles: {
+    mcAdmin: "1429038788859924563"
+  }
 };
 
 export default config
