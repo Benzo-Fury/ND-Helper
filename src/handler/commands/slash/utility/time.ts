@@ -1,6 +1,6 @@
 import { commandModule, CommandType } from "@sern/handler";
 import { ApplicationCommandOptionType } from "discord.js";
-import { UserModel } from "../../../../schemas/user.schema";
+import { UserModel } from "../../../../utils/schemas/user.schema";
 import timezones from "../../../../../public/autocomplete/timezones.json";
 import { DateTime } from "luxon";
 
