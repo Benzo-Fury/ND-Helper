@@ -9,7 +9,7 @@
     "prod-ts": "NODE_ENV=production pm2 start ./scripts/pm2/ts.config.js"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.12"
+    "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
