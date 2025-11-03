@@ -52,7 +52,6 @@ export default commandModule({
     // Get whitelist file as obj
 
     const username = ctx.options.getString("username")!;
-    let response: MessageReplyOptions;
 
     let cmds = {
       add: `whitelist add ${username}`,
@@ -61,25 +60,18 @@ export default commandModule({
 
     const subcommand = ctx.options.getSubcommand();
     try {
-      switch (subcommand) {
-        case "remove": {
-          Minecraft.execute(cmds.remove);
-          return ctx.reply({
-            content: `Successfully removed \`${username}\` from the whitelist.`,
-          });
-        }
+      let res;
 
-        case "add": {
-          Minecraft.execute(cmds.add);
-          return ctx.reply({
-            content: `Successfully added \`${username}\` to the whitelist.`,
-          });
-          break;
-        }
+      if (subcommand === "remove") {
+        res = await Minecraft.execute(cmds.remove);
+      } else {
+        res = await Minecraft.execute(cmds.add);
       }
+
+      return ctx.reply({ content: String(res) });
     } catch (e) {
       return ctx.reply({
-        content: "There was an error editing the whitelist.",
+        content: `Failed to ${subcommand} ${username} from whitelist`,
         flags: "Ephemeral",
       });
     }

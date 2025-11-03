@@ -16,6 +16,7 @@ const config = {
 
   // Users
   owner: "671610612475756576",
+  me: "1289371064433901639",
 
   // Command Ids (MODIFY ALL DISCORD IDS SO THEY UPDATE UPON CLIENT READY)
   presets: "1294083619912028272",

@@ -20,6 +20,7 @@
     "discord.js": "^14.23.2",
     "luxon": "^3.5.0",
     "mongoose": "^8.7.0",
+    "openai": "^6.6.0",
     "rcon-client": "^4.2.5",
     "words-to-numbers": "^1.5.1"
   },

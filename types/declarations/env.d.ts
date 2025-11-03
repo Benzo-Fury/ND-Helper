@@ -6,6 +6,7 @@ declare global {
             DISCORD_TOKEN: string;
             DB_URI: string;
             MC_RCON_PASSWORD: string;
+            OPEN_AI_TOKEN: string;
         }
     }
 }
